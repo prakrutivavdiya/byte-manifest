@@ -4,7 +4,7 @@ jobType: Source Aligned Data Product
 developerId: a7213db3-af1d-4810-ac21-e49160b82291
 requestDataproductID: 875bb63c-99d1-4f41-978c-a1f841f7949c
 domain: sale
-alias: s3://cost-testing-s3
+alias: Lineage_testing_s3
 discoveryPort:
   name: lineage test
 inputPorts:
@@ -22,9 +22,15 @@ inputPorts:
     type: inputParquet
 productState:
   isDynamic: true
-  alias: s3://cost-testing-s3
+  alias: Lineage_testing_s3
   retentionVersions: ""
-  logicalSchema: ""
+  logicalSchema:
+    properties:
+      a:
+        type: STRING
+        description: ""
+        sourceColumn: abc
+        sourceTable: pxc
   stateStoreType: loadDataIceberg
   isProfilingEnabled: false
   tableName: s3source.secondary_sales_cost_testing
