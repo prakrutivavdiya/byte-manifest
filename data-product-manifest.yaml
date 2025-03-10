@@ -1,59 +1,49 @@
-jobId: "1306"
-jobName: lineage test
+jobId: "1495"
+jobName: aa
 jobType: Source Aligned Data Product
-developerId: a7213db3-af1d-4810-ac21-e49160b82291
-requestDataproductID: 875bb63c-99d1-4f41-978c-a1f841f7949c
-domain: sale
-alias: Lineage_testing_s3
+developerId: 677976f0-3e23-4c48-a7e2-cb32065c0266
+domain: finance
+alias: ""
 discoveryPort:
-  name: lineage test
+  name: aa
 inputPorts:
-  - alias: Secondary_Sales_1
+  - alias: Trial_Data_set_1_1
     isDynamic: true
-    path: s3://bp-spark-sql-library-test-acc/secondary_sales_parquet/
+    path: s3://csv/path/##variable_name##
     optional:
       persistDataFrame: false
       advanceOptions:
-        mergeSchema: true
+        delimiter: ","
       enableDataReconciliation: false
       enforceSchema: false
-      connection: Base S3 Connectivity
-      dataSetUrn: urn:dv:dataset:5a075ca4-46b2-4988-ba1b-16c0cdf30f4f
-    type: inputParquet
+      connection: Test Data Connection 1
+      dataSetUrn: urn:dv:dataset:c7ed0e02-4a70-414e-accd-dc3cccf4f241
+    type: inputDelimited
 productState:
   isDynamic: true
-  alias: Lineage_testing_s3
+  alias: ""
   retentionVersions: ""
-  logicalSchema:
-    properties:
-      a:
-        type: STRING
-        description: ""
-        sourceColumn: abc
-        sourceTable: pxc
-  stateStoreType: loadDataIceberg
+  logicalSchema: ""
+  stateStoreType: writeDataFrameToSQLServerTable
   isProfilingEnabled: false
-  tableName: s3source.secondary_sales_cost_testing
-  warehousePath: s3://cost-testing-s3
-  catalogName: s3source.secondary_sales_cost_testing
+  connection: ""
+  tableName: ""
   optional:
     persistDataFrame: false
+    addRunIdColumn: false
     enableDataReconciliation: false
-    enforceSchema: true
-    enforceSchemaMethod: Warning
-    catalogType: glue
+    enforceSchema: false
   refreshInterval: None
 transformation:
   - isDynamic: true
-    alias: Spark_SQL_1
-    description: select * from secondary_sales
+    alias: Select_Columns_1
+    description: ""
     sequence: 2
-    inputDataFrameList:
-      - inputDataFrame: Secondary_Sales_1
-        tempViewName: ""
-    query: select * from secondary_sales
+    inputDataFrame: Trial_Data_set_1_1
+    columns: ""
     optional:
       persistDataFrame: false
-    type: operationThroughSqlQuery
+    type: selectColumns
 controlPort:
   dataQualityRules: {}
+timeout: 5
